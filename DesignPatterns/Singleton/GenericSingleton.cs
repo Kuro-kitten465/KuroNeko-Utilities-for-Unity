@@ -12,12 +12,7 @@ namespace KuroNeko.Utilities.DesignPattern
             get
             {
                 lock (_lock)
-                {
-                    if (_instance == null)
-                        _instance = new T();
-                    
-                    return _instance;
-                }
+                    return _instance ??= new T();
             }
         }
     }
