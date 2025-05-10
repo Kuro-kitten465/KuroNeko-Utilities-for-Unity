@@ -16,9 +16,9 @@ namespace Kuro.UnityUtils.Tests
 
         void Awake()
         {
-            EventBus.ClearEvents();
+            EventBus.Clear();
             EventBus.Subscribe(TestEnum.Test1, OnTestEvent1);
-            EventBus.Subscribe(TestEnum.Test2, OnTestEvent2);
+            EventBus.Subscribe(TestEnum.Test1, OnTestEvent2);
             EventBus.Subscribe(TestEnum.Test3, OnTestEvent3);
             EventBus.Subscribe(TestEnum.Test4, OnTestEvent4);
             EventBus.Subscribe(TestEnum.Test4, OnVoidTestEvent4);
@@ -33,38 +33,29 @@ namespace Kuro.UnityUtils.Tests
             EventBus.Unsubscribe(TestEnum.Test4, OnVoidTestEvent4);
         }
 
-        public void OnTestEvent1(object sender, params object[] args)
+        public void OnTestEvent1(object e, object a)
         {
-            foreach (var arg in args)
-            {
-                Debug.Log(arg);
-            }
+            Debug.Log(a);
         }
 
-        public void OnTestEvent2(object sender, params object[] args)
+        public void OnTestEvent2(object e, object a)
         {
-            foreach (var arg in args)
-            {
-                Debug.Log(arg);
-            }
+            Debug.Log(a);
         }
 
-        public void OnTestEvent3(object sender, params object[] args)
+        public void OnTestEvent3(object e, object a)
         {
-            foreach (var arg in args)
-            {
-                Debug.Log(arg);
-            }
+            Debug.Log(a);
         }
 
-        public int OnTestEvent4(object sender, params object[] args)
+        public int OnTestEvent4(object e, object a)
         {
-            return (int)args[0];
+            return (int)a;
         }
 
-        public void OnVoidTestEvent4(object sender, params object[] args)
+        public void OnVoidTestEvent4(object e, object a)
         {
-            Debug.Log("OnTestEvent4: " + args[0]);
+            Debug.Log("OnTestEvent4: " + a);
         }
     }
 }
