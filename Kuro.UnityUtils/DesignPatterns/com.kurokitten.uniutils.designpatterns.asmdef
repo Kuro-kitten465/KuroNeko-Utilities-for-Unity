@@ -1,0 +1,32 @@
+{
+    "name": "Kuro.UnityUtilities.DesignPatterns",
+    "rootNamespace": "Kuro.UnityUtils.DesignPatterns",
+    "references": [],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "EmbeddedLinux",
+        "LinuxStandalone64",
+        "CloudRendering",
+        "Switch",
+        "PS4",
+        "PS5",
+        "WSA",
+        "WebGL",
+        "WindowsStandalone32",
+        "WindowsStandalone64",
+        "WindowsStandalone32Server",
+        "WindowsStandalone64Server",
+        "GameCoreXboxOne",
+        "XboxOne",
+        "GameCoreScarlett"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
