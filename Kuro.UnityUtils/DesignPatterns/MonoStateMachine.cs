@@ -2,19 +2,19 @@ using UnityEngine;
 
 namespace Kuro.UnityUtils.DesignPatterns
 {
-    public abstract class MonoStateMachine<T> : MonoBehaviour where T : MonoStateMachine<T>
+    public abstract class MonoStateMachine<TOwner> : MonoBehaviour where TOwner : MonoStateMachine<TOwner>
     {
-        protected StateMachine<T> _fsm;
+        protected StateMachine<TOwner> _fsm;
 
         protected virtual void Awake()
         {
-            _fsm = new StateMachine<T>((T)this);
+            _fsm = new StateMachine<TOwner>((TOwner)this);
             SetupStates(_fsm);
         }
 
         protected virtual void Update() => _fsm?.DynamicStay();
         protected virtual void FixedUpdate() => _fsm?.FixedStay();
 
-        protected abstract void SetupStates(StateMachine<T> fsm);
+        protected abstract void SetupStates(StateMachine<TOwner> fsm);
     }
 }
