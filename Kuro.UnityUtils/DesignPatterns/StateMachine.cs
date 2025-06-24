@@ -7,8 +7,8 @@ namespace Kuro.UnityUtils.DesignPatterns
     {
         public void OnEnter(TOwner owner);
         public void OnExit(TOwner owner);
-        public void OnDynamicStay(TOwner owner);
-        public void OnFixedStay(TOwner owner);
+        public void OnUpdate(TOwner owner);
+        public void OnFixedUpdate(TOwner owner);
     }
 
     public class StateMachine<TOwner>
@@ -46,7 +46,7 @@ namespace Kuro.UnityUtils.DesignPatterns
             }
         }
 
-        public void DynamicStay() => _currentState?.OnDynamicStay(_owner);
-        public void FixedStay() => _currentState?.OnFixedStay(_owner);
+        public void DynamicStay() => _currentState?.OnUpdate(_owner);
+        public void FixedStay() => _currentState?.OnFixedUpdate(_owner);
     }
 }
