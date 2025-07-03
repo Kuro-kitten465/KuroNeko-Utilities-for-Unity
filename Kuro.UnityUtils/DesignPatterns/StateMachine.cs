@@ -7,14 +7,7 @@ namespace Kuro.UnityUtils.DesignPatterns
     #region State Interfaces
     public interface IStateEnter<TOwner>
     {
-<<<<<<< Updated upstream
-        public void OnEnter(TOwner owner);
-        public void OnExit(TOwner owner);
-        public void OnDynamicStay(TOwner owner);
-        public void OnFixedStay(TOwner owner);
-=======
         void OnEnter(TOwner owner);
->>>>>>> Stashed changes
     }
 
     public interface IStateExit<TOwner>
@@ -90,11 +83,6 @@ namespace Kuro.UnityUtils.DesignPatterns
 
             return this;
         }
-
-<<<<<<< Updated upstream
-        public void DynamicStay() => _currentState?.OnDynamicStay(_owner);
-        public void FixedStay() => _currentState?.OnFixedStay(_owner);
-=======
         public virtual void ChangeState<TState>(TState state = default)
         {
             if (!IsValidState(typeof(TState)))
@@ -123,7 +111,6 @@ namespace Kuro.UnityUtils.DesignPatterns
                 i == typeof(IStateUpdate<TOwner>) ||
                 i == typeof(IStateFixedUpdate<TOwner>) ||
                 i == typeof(IState<TOwner>));
->>>>>>> Stashed changes
     }
     #endregion
 }
