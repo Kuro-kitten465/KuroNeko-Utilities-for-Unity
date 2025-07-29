@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Kuro.UnityUtils.DesignPatterns
 {
+
     public abstract class LegacySingleton<T> where T : LegacySingleton<T>, IDisposable, new()
     {
         private static readonly object _lock = new();
@@ -24,7 +25,7 @@ namespace Kuro.UnityUtils.DesignPatterns
                 }
             }
         }
-        
+
         private bool _disposed = false;
 
         protected virtual void Dispose(bool disposing)
@@ -66,7 +67,7 @@ namespace Kuro.UnityUtils.DesignPatterns
                 lock (_lock)
                 {
                     _instance = FindFirstObjectByType<T>();
-                    
+
                     if (_instance == null)
                     {
                         var go = new GameObject($"{typeof(T).Name} Instance");
@@ -108,3 +109,4 @@ namespace Kuro.UnityUtils.DesignPatterns
         }
     }
 }
+
