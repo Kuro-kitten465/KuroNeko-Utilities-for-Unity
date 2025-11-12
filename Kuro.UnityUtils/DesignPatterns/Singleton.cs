@@ -8,8 +8,7 @@ namespace Kuro.UnityUtils.DesignPatterns
     {
         private static readonly object _lock = new();
         public static bool IsInitialized => _instance != null;
-        public static Action<T> OnInstanceCreated;
-        public static Action<T> OnInstanceDestroy;
+        public static event Action<T> OnInstanceDestroy;
         private static T _instance = null;
         public static T Instance
         {
@@ -20,7 +19,6 @@ namespace Kuro.UnityUtils.DesignPatterns
                 lock (_lock)
                 {
                     _instance = new T();
-                    OnInstanceCreated?.Invoke(_instance);
                     return _instance;
                 }
             }
@@ -50,13 +48,11 @@ namespace Kuro.UnityUtils.DesignPatterns
         ~LegacySingleton() => Dispose(false);
     }
 
-    public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
     {
         private static readonly object _lock = new();
         private static T _instance;
         public static bool IsInitialized => _instance != null;
-        public static event Action<T> OnInstanceCreated;
-        public static event Action<T> OnInstanceDestroy;
 
         public static T Instance
         {
@@ -88,7 +84,6 @@ namespace Kuro.UnityUtils.DesignPatterns
             }
 
             _instance = this as T;
-            OnInstanceCreated?.Invoke(_instance);
         }
 
         public T Persistent()
@@ -99,13 +94,7 @@ namespace Kuro.UnityUtils.DesignPatterns
 
         protected virtual void OnDestroy()
         {
-            if (_instance == this)
-            {
-                OnInstanceDestroy?.Invoke(_instance);
-                OnInstanceCreated = null;
-                OnInstanceDestroy = null;
-                _instance = null;
-            }
+            if (_instance == this) _instance = null;
         }
     }
 }
